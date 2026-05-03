@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1a3026" />
+    <meta name="format-detection" content="telephone=yes" />
+    <!-- SEO placeholders: синхронизируются приложением через syncDocumentChrome (lang / meta / og / twitter). -->
+    <title>The Step Garden</title>
+    <meta name="description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&amp;fit=crop&amp;w=1600&amp;q=82"
+    />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.23/dist/lenis.min.js" defer></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "tsg-deep": "#1a3026",
+              "tsg-surface": "#213a2e",
+              "tsg-gold": "#c5a059",
+              "tsg-gold-hover": "#d4b06a",
+              "tsg-off-white": "#f5f5f5",
+              "tsg-muted-cream": "#b8b0a0",
+            },
+            fontFamily: {
+              sans: ["Montserrat", "ui-sans-serif", "system-ui", "sans-serif"],
+              serif: ['"Playfair Display"', "ui-serif", "Georgia", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --site-nav-height: 76px;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      html.lenis {
+        scroll-behavior: auto;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+      section[id]:not(#hero),
+      footer[id] {
+        scroll-margin-top: calc(var(--site-nav-height) + 10px);
+      }
+      body {
+        min-height: 100dvh;
+        background-color: #1a3026;
+        color: #f5f5f5;
+      }
+      .skip-link {
+        position: fixed;
+        left: 1rem;
+        top: 1rem;
+        z-index: 1000;
+        transform: translateY(-120%);
+        border-radius: 9999px;
+        background-color: #c5a059;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #1a3026;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+        transition: transform 0.3s ease;
+      }
+      .skip-link:focus-visible {
+        transform: translateY(0);
+        outline: 2px solid #f5f5f5;
+        outline-offset: 4px;
+      }
+      @keyframes scroll-indicator-bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(8px);
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .scroll-indicator-chevron {
+          animation: scroll-indicator-bounce 2s ease-in-out infinite;
+        }
+      }
+      .menu-tablist {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .menu-tablist::-webkit-scrollbar {
+        display: none;
+      }
+      .sr-only-focusable:not(:focus):not(:focus-within) {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      ::selection {
+        background-color: rgba(197, 160, 89, 0.35);
+        color: #f5f5f5;
+      }
+      @keyframes tsgHeroIn {
+        from {
+          opacity: 0;
+          transform: translateY(26px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .tsg-hero-in > * {
+          opacity: 0;
+          animation: tsgHeroIn 0.85s ease forwards;
+        }
+        .tsg-hero-in > *:nth-child(1) {
+          animation-delay: 0.12s;
+        }
+        .tsg-hero-in > *:nth-child(2) {
+          animation-delay: 0.28s;
+        }
+        .tsg-hero-in > *:nth-child(3) {
+          animation-delay: 0.38s;
+        }
+        .tsg-hero-in > *:nth-child(4) {
+          animation-delay: 0.48s;
+        }
+      }
+      [data-tsg-reveal]:not(.is-visible, .motion-reduce-ready) {
+        opacity: 0;
+        transform: translateY(1.75rem);
+      }
+      [data-tsg-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.72s ease, transform 0.72s ease;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        [data-tsg-reveal],
+        #menu-grid[data-tsg-fade-ready] {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+      #menu-grid {
+        transition: opacity 0.22s ease, transform 0.22s ease;
+      }
+      #menu-grid[data-tsg-fade-ready].is-muted {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      body.tsg-lb-open {
+        overflow: hidden;
+      }
+    </style>
+    <script id="tsg-jsonld" type="application/ld+json">{}</script>
+  </head>
+  <body class="min-h-full bg-tsg-deep font-sans text-tsg-off-white antialiased pb-28 lg:pb-0">
+    <!-- Первый фокус: к #main-content. Подписи skip / meta подтягиваются из LANG_DATA в app.js. -->
+    <a id="skip-to-main" class="skip-link sr-only-focusable" href="#main-content"
+      >К основному содержимому</a
+    >
+    <div
+      id="tsg-lightbox"
+      class="fixed inset-0 z-[650] hidden items-center justify-center bg-[rgba(8,14,11,0.92)] px-5 py-10 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <button
+        type="button"
+        id="tsg-lightbox-close"
+        class="absolute right-5 top-[max(1.25rem,env(safe-area-inset-top))] z-[1] inline-flex min-h-[48px] min-w-[48px] items-center justify-center rounded-full border border-tsg-gold/45 font-sans text-sm font-semibold uppercase tracking-[0.12em] text-tsg-gold hover:border-tsg-gold hover:bg-white/[0.06]"
+      >
+        ×
+      </button>
+      <img id="tsg-lightbox-img" alt="" decoding="async" class="max-h-[min(88dvh,900px)] w-auto max-w-full rounded-lg object-contain shadow-[0_20px_80px_rgba(0,0,0,0.55)]" />
+    </div>
+    <div id="tsg-root"></div>
+    <noscript>
+      <p class="fixed inset-x-0 bottom-0 z-[1100] bg-tsg-deep p-6 text-center text-sm text-tsg-muted-cream">
+        Для просмотра сайта включите JavaScript или откройте страницу в современном браузере.
+      </p>
+    </noscript>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
